@@ -1,0 +1,32 @@
+.comment{
+    display: flex;
+}
+.comment_image{
+    width: fit-content;
+    display: flex;
+}
+.comment_image .MuiAvatar-root{
+    margin: auto;
+}
+.comment_box{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: lightgray;
+    width: fit-content;
+    padding: 10px;
+}
+.comment_box h2{
+    font-size: 1em;
+    font-weight: bold;
+}
+.comment_box h4{
+    font-weight: normal;
+    font-size: 0.8em;
+}
+.comment_box h3{
+    font-weight: normal;
+    font-size: 1.2em;
+    margin-top: 5px;
+}

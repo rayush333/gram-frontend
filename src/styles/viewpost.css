@@ -1,0 +1,50 @@
+.comment_container{
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 10px;
+    margin: 10px;
+}
+.comment_footer{
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    padding: 0px;
+    align-items: left;
+}
+.comment_footer_form{
+    display: flex;
+}
+.MuiIconButton-root.emoji_button{
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 999px;
+    background-color: transparent;
+    color: gray;
+    margin: auto 0;
+}
+.MuiIconButton-root.emoji_button:hover{
+    background-color: transparent;
+}
+.comment_footer form{
+    flex: 1;
+    padding: 10px;
+    margin-left: 0;
+}
+.comment_footer input{
+    width: 28em;
+    margin-right: auto;
+}
+.emoji_picker{
+    position: absolute;
+    bottom: 120px;
+    z-index: 10;
+}
+.comment_footer form input{
+    border-radius: 20px;
+    border : none;
+    outline: none;
+    padding-left: 15px;
+    font-size: 1.5em;
+}

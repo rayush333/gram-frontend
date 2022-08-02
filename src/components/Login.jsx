@@ -1,13 +1,15 @@
 import React,{useState} from 'react';
-// import axios from "axios";
 import {useHistory} from "react-router-dom";
 import {useStateValue} from "./StateProvider";
 import Image from "../images/gameskraft-logo-black.gif";
-// import qs from "qs";
 import "../styles/login.css";
+import axios from 'axios';
+import {BASE_API_URL} from "./constants";
+import {setCookie} from "./cookies";
+import {actionTypes} from "./reducer";
 function Login() 
 {
-    // const [{},dispatch] = useStateValue();
+    const [{},dispatch] = useStateValue();
     const history = useHistory();
     const [state,setState] = useState(0);
     const [value,setValue] = useState("");
@@ -41,13 +43,34 @@ function Login()
                 password: value
                 }
             });
-        }
-    }
             const details = {
                 ...loginDetails,
                 password: value
             };
             console.log(details);
+            const res = await axios.get(`${BASE_API_URL}/user/authentication`, {headers : details});
+            console.log(res);
+            if(res?.data?.code === 200)
+            {
+                setCookie("token", res?.data?.data?.token);
+                setCookie("userId", res?.data?.data?.userId);
+                dispatch({
+                    type : actionTypes.SET_USER,
+                    user: {
+                        userId : res?.data?.data?.userId,
+                        userToken : res?.data?.data?.token
+                    }
+                });
+            }
+            else
+                setError({
+                    value: 1,
+                    message: res?.data?.data
+                });
+        }
+    }
+            
+            
     //         axios({
     //             method: 'post',
     //             url: 'http://localhost:5000/login',
@@ -90,7 +113,7 @@ function Login()
 					{state === 0 ? <button className="custom-email-button" onClick={handleClick}>Next</button>  :
 					<button className="custom-email-button" onClick={handleClick}>Submit</button> }
 				</div>
-                <div>{error.value === 1 ? <p className="login-email email" style={{position: "absolute", left: "40px"}}>{error.message}</p> : null}</div>
+                <div>{error?.value === 1 ? <p className="login-email email" style={{position: "absolute", left: "35px"}}>{error.message}</p> : null}</div>
                 <p className="email message" onClick={()=>{
                     history.push("/register");
                 }}>Create a new account?</p>

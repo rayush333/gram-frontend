@@ -1,0 +1,12 @@
+.search_results{
+    position: absolute;
+    top: 9vh;
+    height: fit-content;
+    background-color: white;
+    width: 50%;
+    border-radius: 10px;
+    z-index: 100;
+    border: 1px solid;
+    max-height: 60vh;
+    overflow: auto;
+}

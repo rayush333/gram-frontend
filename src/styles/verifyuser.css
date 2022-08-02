@@ -1,0 +1,61 @@
+.verify_user{
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to right, #08fcbd, white);
+    width: 100vw;
+    height: 100vh;
+}
+.verified_container{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    height: 70vh;
+    background-color: blue;
+    margin: 15vh 15vw;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px lightgreen;
+}
+.verified_container_top{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    height: 30%;
+    color : lightgreen;
+}
+.verified_container_top .MuiSvgIcon-root{
+    font-size: 10em;
+}
+.verified_container_top h1{
+    font-size: 6em;
+    margin: auto;
+}
+.verified_container_middle{
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.verified_container_middle img{
+    height: 100%;
+}
+.verified_container_bottom{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+}
+.verified_container_bottom .MuiIconButton-root{
+    height: 50%;
+    border-radius: 10px;
+    margin: auto;
+    width: 30%;
+    color: white;
+    background-color: lightgreen;
+    font-weight: bold;
+}
+.verified_container_bottom .MuiIconButton-root:hover{
+    color: lightgreen;
+    background-color: black;
+}

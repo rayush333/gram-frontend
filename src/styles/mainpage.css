@@ -1,0 +1,8 @@
+.app_body{
+    display: flex;
+    background-color: #f1f2f5;
+    height: 93vh;
+}
+.feed_container{
+    padding: 30px 150px;
+}

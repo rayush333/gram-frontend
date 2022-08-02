@@ -104,6 +104,7 @@ form{
     background-color: white;
     font-weight: 600;
     color: black;
+    margin-right: auto;
 }
 .message{
     font-size: 16px;

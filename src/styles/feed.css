@@ -1,0 +1,28 @@
+.feed
+{
+    flex: 1;
+    padding: 30px 150px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    overflow: auto;
+}
+.feed .MuiIconButton-root{
+    width: 100%;
+    background-color: #08fcbd;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 0;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.feed .MuiIconButton-root:hover{
+    background-color: black;
+    color: #08fcbd;
+}
+.feed .MuiIconButton-root .MuiSvgIcon-root
+{
+    margin-right: 20px;
+    font-size: xx-large;
+}
