@@ -46,7 +46,7 @@ function Page() {
     loadFollowers();
     getType();
     loadFriends();
-  }, []);
+  }, [pageId]);
   async function loadFriends()
   {
     const res = await axios.get(`${BASE_API_URL}/friends`, {params: {user_id : userId}, headers : {

@@ -14,12 +14,15 @@ import {useStateValue} from "./StateProvider";
 import axios from 'axios';
 import { BASE_API_URL } from './constants';
 import {getCookie} from "./cookies";
+import Friend from './Friend';
+import "../styles/profile.css";
 function Feed() {
     const userToken = getCookie("token");
     const userId = getCookie("userId");
     const {postId} = useParams();
     const [ {user} ] = useStateValue();
     const [showEmoji, setShowEmoji] = useState(false);
+    const [tags, setTags] = useState(null);
     const [newComment, setNewComment] = useState({
         senderId : userId,
         parentId: null,
@@ -31,7 +34,17 @@ function Feed() {
     useEffect(()=>{
         loadPost();
         loadComments();
-    }, []);
+        loadTags();
+    }, [postId]);
+    async function loadTags()
+    {
+        const res = await axios.get(`${BASE_API_URL}/posts/tags`, {params: {post_id : postId}, headers: {Authorization : `Bearer ${userToken}`}});
+        console.log(res?.data);
+        if(res?.status == 200)
+        {
+            setTags(res?.data);
+        }
+    }
     async function loadComments()
     {
         const res = await axios.get(`${BASE_API_URL}/posts/comments`, {params : {id : postId}, headers: { Authorization: `Bearer ${userToken}`}});
@@ -119,6 +132,14 @@ function Feed() {
                 <input type="text" placeholder="Type a comment" name="text" value={newComment?.text} onChange={handleChange} onClick={()=>{setShowEmoji(false)}} autoComplete="off" spellCheck="false" />
                 <IconButton className="emoji_button" type="submit" onClick={()=>{setShowEmoji(false)}} style={{position: "relative", bottom: "5px", left: "10px"}}><SendIcon onClick={handleSubmit} /></IconButton>
             </form>
+        </div>
+        <h1 style={{marginRight: "auto", fontWeight: "normal", marginTop: "20px", marginBottom: "20px"}}>Tags</h1>
+        <div className="profile_body">
+        <div>
+            {tags?.map((tag)=>{
+                return <Friend id={tag?.id} username={tag?.username} name={tag?.name} media={tag?.media} />
+            })}
+        </div>
         </div>
     </div>
   )

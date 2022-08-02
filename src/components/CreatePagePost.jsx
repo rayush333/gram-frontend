@@ -11,6 +11,8 @@ import {getCookie} from "./cookies";
 import Preview from "../images/preview.jpeg";
 function CreatePost() {
   const [submit, setSubmit] = useState(true);
+  const [friends, setFriends] = useState([]);
+  const [options, setOptions] = useState([]);
   const {pageId} = useParams(); 
   const userToken = getCookie("token");
   const userId = getCookie("userId");
@@ -23,6 +25,7 @@ function CreatePost() {
     });
     useEffect(()=>{
       setSubmit(true);
+      loadFriends();
     }, []);
     function handleChange(e)
     {
@@ -32,13 +35,29 @@ function CreatePost() {
         [name] : value
       });
     }
+    function handleTagChange(event)
+    {
+        let value = Array.from(
+          event.target.selectedOptions,
+          (option) => option.value
+        );
+        setOptions(value);
+    }
+    async function loadFriends()
+    {
+      const res = await axios.get(`${BASE_API_URL}/friends`, {params: {user_id : userId}, headers : {
+        Authorization : `Bearer ${userToken}`
+      }});
+      if(res?.data?.code === 200)
+      setFriends(res?.data?.data);
+    }
   async function handleSubmitPost()
   {
     setSubmit(false);
       var bodyFormData = new FormData();
       console.log(newPost);
       bodyFormData.append('posts', new Blob([JSON.stringify({"content" : newPost?.content,
-      "loc_desc": newPost?.loc_desc, "type" : 2, "page_id" : pageId})], { type : 'application/json'}));
+      "loc_desc": newPost?.loc_desc, "type" : 2, "page_id" : pageId, tags : options})], { type : 'application/json'}));
       if(newPost?.postPic)
       bodyFormData.append('file', newPost?.postPic);
       console.log(bodyFormData);
@@ -108,8 +127,16 @@ function CreatePost() {
         <div className="create_post_input">
             <input name="loc_desc" type="text" spellcheck="false" placeholder="Enter your location (optional) " onChange={handleChange} />
         </div>
+        <h4 style={{marginLeft: "5px", marginRight: "auto", color: "gray", marginBottom: "10px"}}>Tag your friends (optional)</h4>
         <div className="create_post_input">
-        <input type="text" placeholder="Tag your friends or pages (optional) " />
+        {/* <input type="text" placeholder="Tag your friends or pages (optional) " /> */}
+        <select
+            multiple={true}
+            value={options}
+            onChange={handleTagChange}
+          style={{width: "100%", borderRadius: "10px", fontSize: "1em", height: "fit-content"}}> 
+            {friends?.map((friend)=> <option value={friend?.id}>@{friend?.username}</option>)}
+          </select>
         </div>
         {submit ? <IconButton onClick={handleSubmitPost}><AddIcon /> CREATE POST </IconButton> : 
         <IconButton disabled><AddIcon /> CREATE POST </IconButton>}

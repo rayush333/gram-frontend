@@ -19,7 +19,6 @@ import axios from "axios";
 import {BASE_API_URL} from "./constants";
 import { getCookie } from "./cookies";
 import {useParams} from "react-router-dom";
-import { alignProperty } from '@mui/material/styles/cssUtils';
 import ClearIcon from '@mui/icons-material/Clear';
 function Profile() {
   const { userId } = useParams();
@@ -34,7 +33,7 @@ function Profile() {
   const userToken = getCookie("token");
   const myId = getCookie("userId");
   useEffect(()=>{
-    setTab(0);
+    setTab(1);
     loadProfile();
     loadPosts();
     loadPages();

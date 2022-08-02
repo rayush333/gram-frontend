@@ -8,14 +8,18 @@ import axios from "axios";
 import {BASE_API_URL} from "./constants";
 import {getCookie} from "./cookies";
 import { useHistory } from 'react-router-dom';
+import {CopyToClipboard} from "react-copy-to-clipboard";
+import CheckIcon from '@mui/icons-material/Check';
 function Post({post}) {
     const userToken = getCookie("token");
     const [isLiked, setIsLiked] = useState(false);
     const [likes, setLikes] = useState(0);
     const [profile, setProfile] = useState(null);
     const [profileImage, setProfileImage] = useState(null);
+    const [copied, setCopied] = useState(false);
     let history = useHistory();
     useEffect(()=>{
+        setCopied(false);
         getLikes();
         checkLiked();
         loadProfile();
@@ -116,10 +120,15 @@ function Post({post}) {
                 <ChatBubbleRoundedIcon />
                 <p>Comment</p>
             </div>
-            <div className="post_option">
+            {copied === true ? <div className="post_option" style={{color: "#08fcbd", cursor: "default"}}>
+                <CheckIcon />
+                <p>Copied</p>
+            </div> : <CopyToClipboard text={`localhost:3000/posts/view/${post?.id}`} onCopy={()=>{
+                setCopied(true)
+            }}><div className="post_option">
                 <ShareRoundedIcon />
                 <p>Share</p>
-            </div>
+            </div></CopyToClipboard>}
         </div>
     </div>
   )
