@@ -10,6 +10,7 @@ import Preview from "../images/preview.jpeg";
 import axios from "axios";
 import { BASE_API_URL } from './constants';
 const userToken = getCookie("token");
+const userId = getCookie("userId");
 function CreatePage() {
     const [newPage, setNewPage] = useState({
         title: "",
@@ -34,7 +35,7 @@ function CreatePage() {
             .then(function (response) {
               //handle success
               if(response?.status === 200)
-              history.push(`/pages/view/${'7'}`);
+              history.push(`/profile/view/${userId}`);
             })
             .catch(function (err) {
               //handle error
@@ -109,9 +110,6 @@ function CreatePage() {
      </label>
      </div>
      </div>
-        <div className="create_post_input">
-            <input type="text" spellcheck="false" placeholder="Add editors to your page" />
-        </div>
         {/* <div className="create_post_input">
         <input type="text" placeholder="Tag your friends or pages (optional) " />
         </div> */}

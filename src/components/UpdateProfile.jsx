@@ -165,10 +165,6 @@ function UpdateProfile() {
         <div className="create_post_input">
             <input name="email" type="text" spellcheck="false" placeholder="Enter your Email Id" value={user?.email} disabled style={{color: 'gray'}}/>
         </div>
-        <p className='input_label'>Description</p>
-        <div className="create_post_input">
-            <input name="description" type="text" spellcheck="false" placeholder="Tell us about yourself" value={newUser?.description} onChange={handleChange}/>
-        </div>
         <p className='input_label'>Date of Birth</p>
         <div className="create_post_input">
             <input name="dob" type="text" spellcheck="false" placeholder="Enter your Date of Birth" value={newUser?.dob} onChange={handleChange}/>

@@ -122,7 +122,7 @@ function CreatePost() {
   return (
     <div className="create_post">
         <div className="create_post_input">
-        <textarea name="content" rows="10" cols="120" spellcheck="false" placeholder="What's on your mind, Ayush?" onChange={handleChange}></textarea>
+        <textarea name="content" rows="10" cols="120" spellcheck="false" placeholder="What's on your mind?" onChange={handleChange}></textarea>
         </div>
         <div>
      <img src={newPost?.postPic ? URL.createObjectURL(newPost?.postPic) : Preview} className="create_post_image" alt="Upload your image here" />

@@ -119,7 +119,7 @@ function Register() {
         <input placeholder="Create your username" className="custom-email-input" type='text' style={{width: "420px", height: "50px", paddingRight: "20px"}} maxlength="150" name="username" onChange={handleChange} value={details.username} />
         <p className="email" style={{position: "relative", top: "5px", fontSize: "10px"}}>{errors?.username || null}</p>
         <p className="email">Password</p>
-        <input placeholder="Must contain Uppercase letters, digits and special symbols" className="custom-email-input" type='password' style={{width: "420px", height: "50px", paddingRight: "20px"}} maxlength="150" name="password" onChange={handleChange} value={details.password} />
+        <input placeholder="Create a password" className="custom-email-input" type='password' style={{width: "420px", height: "50px", paddingRight: "20px"}} maxlength="150" name="password" onChange={handleChange} value={details.password} />
         <p className="email" style={{position: "relative", top: "5px", fontSize: "10px"}}>{errors?.password || null}</p>
         <p className="email">Confirm Password</p>
         <input placeholder="Re-enter your password" className="custom-email-input" type='password' style={{width: "420px", height: "50px", paddingRight: "20px"}} maxlength="250" name="confirm" onChange={handleChange} value={details.confirm} />

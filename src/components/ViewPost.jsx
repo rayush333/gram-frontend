@@ -104,7 +104,7 @@ function Feed() {
     }
   return (
     <div className="feed">
-        <IconButton onClick={()=>{history.push(`/posts/update/${postId}`)}}><ModeEditOutlineRoundedIcon /> EDIT POST </IconButton>
+        {/* <IconButton onClick={()=>{history.push(`/posts/update/${postId}`)}}><ModeEditOutlineRoundedIcon /> EDIT POST </IconButton> */}
         {post ? <Post post={post} /> : null}
         {Object.keys(comments).length > 0 ?
         <div className="comment_container">
